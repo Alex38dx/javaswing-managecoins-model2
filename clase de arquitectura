@@ -1,0 +1,156 @@
+package ejercicios;
+
+import java.awt.Color;
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.ButtonGroup;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.border.EmptyBorder;
+
+public class Nuevos_objetos extends JFrame {
+
+	private static final long serialVersionUID = 1L;
+	private JPanel contentPane;
+	private JLabel lblMensaje;
+	private JComboBox<String> combo1;
+
+
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Nuevos_objetos frame = new Nuevos_objetos();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	
+	public Nuevos_objetos() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 300);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		lblMensaje = new JLabel("yo estudio en el itfip de la ciudad del espinal");
+		lblMensaje.setBounds(107, 11, 300, 23);
+		contentPane.add(lblMensaje);
+		
+		JRadioButton opcolores = new JRadioButton("Colores letra");
+		opcolores.setBounds(279, 73, 109, 23);
+		contentPane.add(opcolores);
+		
+		JRadioButton optiposletras = new JRadioButton("Tipos letra");
+		optiposletras.setBounds(279, 116, 109, 23);
+		contentPane.add(optiposletras);
+		
+		JRadioButton opfondos = new JRadioButton("Colores de fondo");
+		opfondos.setBounds(279, 153, 109, 23);
+		contentPane.add(opfondos);
+		
+		ButtonGroup grupoRadios = new ButtonGroup();
+		grupoRadios.add(opcolores);
+		grupoRadios.add(optiposletras);
+		grupoRadios.add(opfondos);
+
+		combo1 = new JComboBox<>();
+		combo1.setBounds(64, 116, 140, 22);
+		contentPane.add(combo1);
+		
+		
+		combo1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (opcolores.isSelected()) {
+					if(combo1.getSelectedItem()=="Azul") {
+						lblMensaje.setForeground(Color.blue);
+					}
+					else if(combo1.getSelectedItem()=="Rojo") {
+						lblMensaje.setForeground(Color.red);
+					}
+					else if(combo1.getSelectedItem()=="Verde") {
+						lblMensaje.setForeground(Color.green);
+					}
+					else if(combo1.getSelectedItem()=="Negro") {
+						lblMensaje.setForeground(Color.black);
+					}
+					
+				} else if (optiposletras.isSelected()) {
+					if(combo1.getSelectedItem()=="Serif") {
+						Font miFont = new Font("Serif", Font.BOLD,14);
+						lblMensaje.setFont(miFont);
+					}else if(combo1.getSelectedItem()=="SansSerif") {
+						Font miFont = new Font("SansSerif", Font.BOLD,14);
+						lblMensaje.setFont(miFont);
+					}else if(combo1.getSelectedItem()=="Monospaced") {
+						Font miFont = new Font("Monospaced", Font.BOLD,14);
+						lblMensaje.setFont(miFont);
+					}else if(combo1.getSelectedItem()=="Dialog") {
+						Font miFont = new Font("Dialog", Font.BOLD,14);
+						lblMensaje.setFont(miFont);
+					}
+				} else if (opfondos.isSelected()) {
+					lblMensaje.setOpaque(true); 
+					if(combo1.getSelectedItem()=="Amarillo") {
+						lblMensaje.setBackground(Color.yellow);
+					}else if(combo1.getSelectedItem()=="Blanco") {
+						lblMensaje.setBackground(Color.white);
+					}else if(combo1.getSelectedItem()=="Azul") {
+						lblMensaje.setBackground(Color.blue);
+					}else if(combo1.getSelectedItem()=="Verde") {
+						lblMensaje.setBackground(Color.green);
+					}
+				}
+			}
+		});
+		
+		
+		JButton btnAdicionar = new JButton("Cargar combo");
+		btnAdicionar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				combo1.removeAllItems();
+				if (opcolores.isSelected()) {
+					combo1.addItem("Azul");
+					combo1.addItem("Rojo");
+					combo1.addItem("Verde");
+					combo1.addItem("Negro");
+				} else if (optiposletras.isSelected()) {
+					combo1.addItem("Serif");
+					combo1.addItem("SansSerif");
+					combo1.addItem("Monospaced");
+					combo1.addItem("Dialog");
+				} else if (opfondos.isSelected()) {
+					combo1.addItem("Amarillo");
+					combo1.addItem("Blanco");
+					combo1.addItem("Azul");
+					combo1.addItem("Verde");
+				}
+			}
+		});
+		btnAdicionar.setBounds(50, 226, 122, 23);
+		contentPane.add(btnAdicionar);
+	
+		
+		JButton btnSalir = new JButton("Salir");
+		btnSalir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
+		btnSalir.setBounds(200, 226, 89, 23);
+		contentPane.add(btnSalir);
+	}
+}
